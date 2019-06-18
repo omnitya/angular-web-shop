@@ -1,0 +1,29 @@
+<h1>Contact Us</h1>
+
+<form  id='form' [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+
+  <label>
+    Name : 
+    <input type="text" id='name' formControlName="name">
+    <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+      <div *ngIf="messageForm.controls.name.errors.required"> Your Name Is Required.</div>
+    </div>
+  </label>
+
+  <label>
+    Message : 
+    <textarea id="message" formControlName="message"></textarea>
+    <div *ngIf="submitted && messageForm.controls.message.errors" class="error">
+      <div *ngIf="messageForm.controls.message.errors.required"> A Message Is Required.</div>
+    </div>
+  </label>
+
+  <input type="submit" value="Send Message" class="cta" >
+
+  <button type="reset" value="Reset" class="cta">Clear</button>
+  
+  <label id='label'> 
+     <h5 *ngIf="success" class="cta"> Thank You! Your input is recorded.</h5>
+    </label>
+
+</form>
