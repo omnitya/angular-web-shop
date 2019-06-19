@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr'
 import { User } from '../../shared/user.model';
 import { UserService } from '../../shared/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +17,7 @@ export class SignUpComponent implements OnInit {
     this.resetForm();
   }
 
-  constructor(private userService: UserService, private toastr: ToastrService) { }
+  constructor(private userService: UserService, private toastr: ToastrService, private router: Router) { }
 
   OnSubmit(form: NgForm) {
     var email = form.value.email;
@@ -35,7 +36,8 @@ export class SignUpComponent implements OnInit {
       },
       () => {
         // 'onCompleted' callback.
-        // No errors, route to new page here
+        // No errors, route to user login page.
+        this.router.navigate(['login']);
       }
     );
   }

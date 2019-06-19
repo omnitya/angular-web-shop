@@ -6,9 +6,10 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './user/login/login.component';
 import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  {path : '', component : HomeComponent},
+  {path : '', component : HomeComponent, canActivate:[AuthGuard]},
   {path : 'about', component : AboutComponent},
   {path : 'contact', component : ContactComponent},
   {
