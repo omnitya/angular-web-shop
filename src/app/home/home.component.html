@@ -9,24 +9,20 @@
     </ul>
   </div>
 </nav>
-<div class="row" *ngIf="userClaims">
-    <div class="col s12 m7">
-      <div class="card">
-        <div class="card-content">
-          <span>Product Name :{{userClaims.products[1].name}}</span>
-          <br>
-          <span>Unit Price : {{userClaims.products[1].price}}</span>
-          <br>
-          <span>Product Id : {{userClaims.products[1].Id}} {{userClaims.LastName}}</span>
-          <br>
-          <br>
-          <span>Product Name :{{userClaims.products[2].name}}</span>
-          <br>
-          <span>Unit Price : {{userClaims.products[2].price}}</span>
-          <br>
-          <span>Product Id : {{userClaims.products[2].Id}} {{userClaims.LastName}}</span>
-          
-        </div>
-      </div>
-    </div>
-  </div>
+<div *ngIf="loading else loaded" id="loading">
+    loading ...
+</div>
+<ng-template #loaded>
+<div *ngIf="userClaims?.products && userClaims?.products?.length > 0">
+    <table >
+        <tr>
+            <th>Product</th>
+            <th>Price</th> 
+          </tr>
+        <tr *ngFor="let product of userClaims.products; let i = index">
+            <td> {{ product.name }} </td> 
+            <td> {{product.price}} </td> 
+          </tr>
+    </table>   
+</div>
+</ng-template>

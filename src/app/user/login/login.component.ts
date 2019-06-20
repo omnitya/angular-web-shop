@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(private userService : UserService, private toastr: ToastrService, private router: Router) { }
-
+  loading = true;
   ngOnInit() {
     
   }
@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['']);
       }
     );
+    this.loading = false;
   }
 
   loggedIn(){

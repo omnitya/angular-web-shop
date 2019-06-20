@@ -9,11 +9,18 @@ import { UserService } from '../shared/user.service';
 })
 export class HomeComponent implements OnInit {
   userClaims : any;
+  loading = true;
+  ids : any = [];
   constructor(private router : Router, private userService : UserService) { }
 
   ngOnInit() {
     this.userService.getUserClaims().subscribe((data : any)=>{
-      this.userClaims = data;
+    this.userClaims = data;
+
+    for(let result of data.products){
+      this.ids.push(result.name);
+    }
+    this.loading = false;
     });
   }
 
